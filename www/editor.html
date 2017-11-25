@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+<head>
+  <title>Hitchhiker Waziup-Application</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style/shared.css">
+  <link rel="stylesheet" href="style/editor.css">
+  <link rel="stylesheet" href="style/simplemde.min.css">
+  <link rel="stylesheet" href="style/font-awesome.min.css">
+</head>
+<body>  
+  <script>
+    document.body.classList.add("platform-"+(
+      navigator.platform.startsWith("Win") ? "windows" : (
+        navigator.platform.startsWith("mac") ? "mac" : "linux")
+    ));
+    
+    var Waziup = {
+      name: "Waziup.io",
+      servicePath: "TEST",
+      fiwareOrion: "http://broker.waziup.io",
+      fiwareOrionV1: "http://broker.waziup.io/v1",
+      fiwareOrionV2: "http://broker.waziup.io/v2",
+      cygnus: "http://historicaldata.waziup.io/STH",
+      keycloak: {
+        url: "http://aam.waziup.io/auth",
+        realm: "waziup",
+        clientId: "waziup"
+      },
+      keycloakAdmin: {
+        url: "http://aam.waziup.io/auth",
+        clientId: "admin-cli",
+        username: "admin",
+        password: "KCadminW"
+      }
+    }
+    
+    // Issue148
+    Waziup.name = "Waziup.io CORS";
+    Waziup.fiwareOrion = null;
+    Waziup.fiwareOrionV1 = null;
+    Waziup.fiwareOrionV2 = "http://orion.waziup.io/v1/data";
+    
+  </script>
+
+  <script src="js/simplemde.min.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/broker.js"></script>
+  
+  <iframe src="" frameborder="0">
+    
+    
+  </iframe>
+  
+  <textarea id="mde" style="display:none" placeholder="Enter the textbox content here.."></textarea>
+  
+  
+  <textarea id="script_initial" style="display:none" data-ctrl-type="script-initial" placeholder="{&#10;  key: 'value'&#10;}"></textarea>
+  
+    
+  <div data-ctrl-type="script-navigate" class="menubar" style="display:none">
+    <label for="navigate_url">Target URL: </label>
+    <input type="text" name="navigate_url" id="navigate_url" placeholder="#page2">
+  </div>
+  
+  <div data-ctrl-type="list" class="menubar" style="display:none">
+    <table>
+     <thead>
+      <tr>
+        <td>Attribute</td>
+        <td>Headline</td>
+        <td>Control / View</td>
+        <td><button><i class="material-icons">add</i></button></td>
+      </tr>
+     </thead>
+     <tbody>
+       <tr>
+        <td><input type="text" value="location"></td>
+        <td><input type="text" value="Location"></td>
+        <td><input type="text" value="app?location_ctrl"></td>
+        <td><button><i class="material-icons">remove</i></button></td>
+      </tr>
+      <tr>
+        <td><input type="text" value="location"></td>
+        <td><input type="text" value="Location"></td>
+        <td><input type="text" value="app?location_ctrl"></td>
+        <td><button><i class="material-icons">remove</i></button></td>
+      </tr>
+     </tbody>
+    </table>
+  </div>
+  
+  <div data-ctrl-type="table list" class="menubar" style="display:none">
+    <label for="table_active_elm">Active Element Pipeline: </label>
+    <input type="text" name="table_active_elm" id="table_active_elm" placeholder="pipeline.attr:event">
+  </div>
+  
+  <div data-ctrl-type="app" class="menubar" style="display:none">
+    <label for="app_page">Page: </label>
+    <input type="text" name="app_page" id="app_page" placeholder="sub_page">
+  </div>
+  
+  <div data-ctrl-type="script-bridge" class="menubar" style="display:none">
+    <span>Pipeline</span>
+    <select id="script_bridge_dir">
+      <option value="from">←</option>
+      <option value="to">→</option>
+      <option value="both">↔</option>
+      <option value="insert">↷</option>
+    </select>
+    <label for="script_bridge_ppl">Other Pipeline: </label>
+    <input type="text" name="script_bridge_ppl" id="script_bridge_ppl" placeholder="pipeline.attr:event">
+  </div>
+  
+  <div data-ctrl-type="pipeline-fetch" class="menubar" style="display:none">
+    <select id="fetch_method">
+        <option value="GET" selected>GET</option>
+        <option value="POST">POST</option>
+        <option value="PUT">PUT</option>
+        <option value="DELETE">DELETE</option>
+      </select>
+    <label for="fetch_url">URL: </label>
+    <input type="text" name="fetch_url" id="fetch_url" placeholder="https://api.waziup.com/v1/..">
+    <label for="fetch_body">Body: </label>
+    <input type="text" name="fetch_body" id="fetch_body" placeholder="pipeline.attr">
+  </div>
+  
+  <div data-ctrl-type="pipeline-pull pipeline-push pipeline-history" class="menubar" style="display:none">
+    <label for="entity_id">Entity ID: </label>
+    <input type="text" name="entity_id" id="entity_id" placeholder="Entity-ID">
+    <hr class="vr">
+    <label for="entity_id">Entity Type: </label>
+    <input type="text" name="entity_type" id="entity_type" placeholder="Entity-Type">
+    <hr class="vr">
+    <label for="entity_attr">Entity Attribute: </label>
+    <input type="text" name="entity_attr" id="entity_attr" placeholder="Entity-Attribute">
+    
+    <span data-ctrl-type="pipeline-history">
+      <hr class="vr">
+      <select id="history_time">
+        <option value="volvo">Last 5 min</option>
+        <option value="saab">Last 10 min</option>
+        <option value="saab">Last 30 min</option>
+        <option value="saab">Last 1 h</option>
+        <option value="saab">Last 5 h</option>
+        <option value="saab">Last 12 h</option>
+        <option value="saab">Last 1 day</option>
+        <option value="saab">Last 5 day</option>
+        <option value="saab">Last 1 month</option>
+      </select>
+    </span>
+  </div>
+    
+
+  
+  <div id="toolbar" class="toolbar">
+    
+      <div id="tb-general">
+        <div class="button sub-toolbar"><i class="material-icons">linear_scale</i><br>Pipeline
+        
+          <div class="toolbar" style="">
+            <button data-action="create" data-control="pipeline-pull"><i class="material-icons">cloud_download</i><br>Pull Data</button>
+            <button data-action="create" data-control="pipeline-push"><i class="material-icons">cloud_upload</i><br>Push Data</button>
+            <button data-action="create" data-control="pipeline-history"><i class="material-icons">cloud_download</i><br>Pull Hist. Data</button>
+            <hr class="vr">
+            <button data-action="create" data-control="pipeline-fetch"><i class="material-icons">cloud_queue</i><br>API Fetch</button>
+            <hr class="vr">
+            <button data-action="create" data-control="pipeline-observation"><i class="material-icons">exposure_plus_2</i><br>Observer</button>
+          </div>
+        
+        </div>
+
+        <hr class="vr">
+        
+        <div class="button sub-toolbar"><i class="material-icons">input</i><br>Forms 
+        
+          <div class="toolbar" style="">
+            <button data-action="create" data-control="button"><i class="material-icons">crop_landscape</i><br>Button</button>
+            <button data-action="create" data-control="number"><i class="material-icons">exposure_plus_2</i><br>Number</button>
+            <button data-action="create" data-control="input-string"><i class="material-icons">text_fields</i><br>String</button>
+			
+		  </div>
+        </div>
+        
+        <div class="button sub-toolbar"><i class="material-icons">apps</i><br>Views
+        
+          <div class="toolbar" style="">
+            <button data-action="create" data-control="map"><i class="material-icons">map</i><br>Map</button>
+            <button data-action="create" data-control="table"><i class="material-icons">list</i><br>Table</button>
+            <button data-action="create" data-control="list"><i class="material-icons">view_list</i><br>List</button>
+            <button data-action="create" data-control="app"><i class="material-icons">apps</i><br>Sub App</button>
+          </div>
+        </div>
+        
+        <div class="button sub-toolbar"><i class="material-icons">code</i><br>Scripting
+        
+          <div class="toolbar" style="">
+            <button data-action="create" data-control="script-navigate"><i class="material-icons">eject</i><br>Navigation</button>
+            <button data-action="create" data-control="script-initial"><i class="material-icons">description</i><br>Pipeline Init</button>
+            <button data-action="create" data-control="script-bridge"><i class="material-icons">swap_horiz</i><br>Pipeline Bridge</button>
+          </div>
+        </div>
+         
+        <button data-action="create" data-control="text"><i class="material-icons">text_fields</i><br>Text</button>
+
+        <div id="control-tb" style="display:none">
+          <hr class="vr">
+          <button data-action="moveControl"><i class="material-icons">format_shapes</i><br>Move / Resize</button>
+          <button data-action="removeControl"><i class="material-icons">remove</i><br>Remove</button>
+          
+          <div class="button sub-toolbar"><i class="material-icons">settings_applications</i><br>Settings
+        
+            <div class="toolbar" style="">
+              <div>
+                  <label for="control_title">Title: </label><input type="text" name="control_title" id="control_title" data-control-meta="title">
+              </div>
+              <hr class="vr">
+              <div>
+                  <label for="control_css">HTML Style: </label><input type="text" name="control_css" id="control_css" data-control-meta="css"><br>
+                  <label for="control_class">HTML Class: </label><input type="text" name="control_class" id="control_class" data-control-meta="class">
+              </div>
+            </div>
+          </div>
+          
+          <div id="menu-pipeline" >
+            <span><i class="material-icons">linear_scale</i> Pipeline:</span><br>
+            <input type="text" id="pipeline" placeholder="pipeline . attr : event">
+          </div>
+        </div>
+
+        <div data-ctrl-type="text button" style="display:none">
+          <hr class="vr">
+          <button data-action="editMarkdown"><i class="material-icons">mode_edit</i><br>Edit Text</button>
+        </div>
+      </div>
+      <div id="tb-mde" style="display:none">
+        <button data-action="doneMarkdown"><i class="material-icons">done</i><br>Done</button>
+        <button data-action="cancelMardown"><i class="material-icons">clear</i><br>Cancel</button>
+        <hr class="vr">
+        <button data-action="helpMarkdown"><i class="material-icons">help_outline</i><br>Help</button>
+      </div>
+
+      <hr class="vr">
+      
+      <div id="tb-app">
+        <button data-action="showApp"><i class="material-icons">airplay</i><br>Show App</button>
+        
+        <div class="button sub-toolbar"><i class="material-icons">settings_applications</i><br>App Settings
+        
+          <div class="toolbar" style="">
+
+            <div>
+                <label for="app_title">Title: </label><input type="text" name="app_title" id="app_title" data-app-meta="title"><br>
+                <label for="app_stylesheet">Stylesheet: </label><input type="text" name="app_stylesheet" id="app_stylesheet" data-app-meta="stylesheet">
+            </div>
+            <hr class="vr">
+            <div>
+                <label for="app_css">HTML Style: </label><input type="text" name="app_css" id="app_css" data-app-meta="css"><br>
+                <label for="app_class">HTML Class: </label><input type="text" name="app_class" id="app_class" data-app-meta="class">
+            </div>
+            <hr class="vr">
+            <div>
+                <label for="app_width">Width: </label><input type="number" name="app_width" id="app_width" data-app-meta="width"><br>
+                <label for="app_height">Height: </label><input type="number" name="app_height" id="app_height" data-app-meta="height">
+            </div>
+          </div>
+        </div>
+        
+        <button data-action="saveApp"><i class="material-icons">save</i><br>Save App</button>
+        <button data-action="saveApp"><i class="material-icons">delete_forever</i><br>Delete App</button>
+      </div>
+  </div>
+  
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/showdown.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+<head>
+  <title>Hitchhiker Waziup-Application</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style/index.css">
+  <link rel="stylesheet" href="style/ol.css">
+</head>
+<body>  
+  <script>
+    document.body.classList.add("platform-"+(
+      navigator.platform.startsWith("Win") ? "windows" : (
+        navigator.platform.startsWith("mac") ? "mac" : "linux")
+    ));
+    
+    var Waziup = {
+      name: "Waziup.io",
+      servicePath: "TEST",
+      fiwareOrion: "http://orion.waziup.io/api/v1/orion",
+      fiwareOrionV1: "http://orion.waziup.io/api/v1/orion/v1",
+      fiwareOrionV2: "http://orion.waziup.io/api/v1/orion/v2",
+      cygnus: "http://historicaldata.waziup.io/STH",
+      keycloak: {
+        url: "http://aam.waziup.io/auth",
+        realm: "waziup",
+        clientId: "waziup"
+      },
+      keycloakAdmin: {
+        url: "http://aam.waziup.io/auth",
+        clientId: "admin-cli",
+        username: "admin",
+        password: "KCadminW"
+      }
+    }
+    
+  </script>
+  
+  <!-- <div id="content"></div> -->
+  
+  <div id="loading">
+    Loading...
+  </div>
+  
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/ol.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/pipeline.js"></script>
+  <script src="js/broker.js"></script>
+  <script src="js/view.js"></script>
+  <script src="view/app.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

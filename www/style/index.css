@@ -1,0 +1,137 @@
+/* line 1, www/style/index.scss */
+body {
+  text-align: center !important; }
+
+/* line 5, www/style/index.scss */
+#content {
+  display: inline-block;
+  position: relative;
+  min-width: 100px;
+  background: #f5f6f7;
+  text-align: left;
+  margin: 0 auto; }
+
+@keyframes blink {
+  from {
+    opacity: .6; }
+  50% {
+    opacity: .8; }
+  to {
+    opacity: .6; } }
+
+/* line 20, www/style/index.scss */
+#loading {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  right: 0;
+  font-size: 4vw; }
+
+/* line 32, www/style/index.scss */
+body.EDITOR .control:hover {
+  outline: 2px solid #d9e3e8; }
+
+/* line 36, www/style/index.scss */
+body.EDITOR .control.hover {
+  animation: blink 2s ease-in-out 0s infinite;
+  background: #d9e3e8;
+  outline: 2px solid #d9e3e8;
+  pointer-events: none; }
+
+/* line 43, www/style/index.scss */
+body.EDITOR .control.selected {
+  outline: 2px dotted #d9e3e8; }
+
+/* line 49, www/style/index.scss */
+p {
+  margin: 0; }
+
+/* line 53, www/style/index.scss */
+p + p {
+  margin-top: auto; }
+
+/* line 59, www/style/index.scss */
+.testctrl {
+  min-width: 200px;
+  min-height: 200px;
+  background: green;
+  outline: 1px solid red;
+  position: absolute;
+  display: inline-block; }
+
+/* line 68, www/style/index.scss */
+.view-list,
+.view-table,
+.map,
+.button,
+.number,
+.input-string,
+.text {
+  min-width: 1em;
+  min-height: 1em;
+  display: inline-block;
+  position: absolute;
+  box-sizing: content-box;
+  white-space: pre; }
+
+/* line 83, www/style/index.scss */
+.view-list,
+.view-table {
+  overflow: auto;
+  white-space: inherit; }
+  /* line 88, www/style/index.scss */
+  .view-list > table,
+  .view-table > table {
+    width: inherit; }
+  /* line 92, www/style/index.scss */
+  .view-list > table > tbody > tr > td > .control,
+  .view-table > table > tbody > tr > td > .control {
+    position: relative; }
+
+/* line 97, www/style/index.scss */
+.ppl_observ {
+  position: absolute;
+  box-sizing: content-box;
+  font-family: monospace;
+  border: 1px solid #dadada; }
+
+/* line 104, www/style/index.scss */
+.app {
+  position: relative;
+  background: #f1f1f1;
+  text-align: left; }
+
+/* line 110, www/style/index.scss */
+#app {
+  display: inline-block; }
+
+/* line 114, www/style/index.scss */
+.script-navigate,
+.script-bridge,
+.ppl_fetch,
+.ppl_push,
+.ppl_pull {
+  display: inline-block;
+  position: absolute;
+  text-align: center; }
+  /* line 123, www/style/index.scss */
+  .script-navigate span,
+  .script-bridge span,
+  .ppl_fetch span,
+  .ppl_push span,
+  .ppl_pull span {
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis; }
+  /* line 131, www/style/index.scss */
+  .script-navigate img,
+  .script-bridge img,
+  .ppl_fetch img,
+  .ppl_push img,
+  .ppl_pull img {
+    width: 40px;
+    height: 40px; }
+
+/*# sourceMappingURL=index.css.map */

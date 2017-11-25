@@ -1,0 +1,605 @@
+/* line 1, www/style/shared.scss */
+body {
+  background: #fff;
+  margin: 0;
+  font-size: 14px;
+  tab-size: 4;
+  height: 100%;
+  overflow: auto;
+  text-align: center; }
+
+/* line 11, www/style/shared.scss */
+h1, h2, h3, h4, h5 {
+  font-weight: normal; }
+
+/* line 15, www/style/shared.scss */
+html {
+  height: 100%; }
+
+/* line 19, www/style/shared.scss */
+.platform-linux {
+  color: #303942;
+  font-family: Ubuntu, Arial, sans-serif; }
+
+/* line 24, www/style/shared.scss */
+.platform-mac {
+  color: #303942;
+  font-family: '.SFNSDisplay-Regular', 'Helvetica Neue', 'Lucida Grande', sans-serif; }
+
+/* line 29, www/style/shared.scss */
+.platform-windows {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-weight: 400;
+  color: #222; }
+
+/* line 37, www/style/shared.scss */
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration-style: dotted; }
+  /* line 42, www/style/shared.scss */
+  a.hover {
+    text-decoration-style: solid; }
+
+/* line 52, www/style/shared.scss */
+.w0 {
+  width: 0%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w5 {
+  width: 5%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w10 {
+  width: 10%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w15 {
+  width: 15%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w20 {
+  width: 20%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w25 {
+  width: 25%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w30 {
+  width: 30%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w35 {
+  width: 35%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w40 {
+  width: 40%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w45 {
+  width: 45%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w50 {
+  width: 50%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w55 {
+  width: 55%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w60 {
+  width: 60%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w65 {
+  width: 65%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w70 {
+  width: 70%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w75 {
+  width: 75%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w80 {
+  width: 80%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w85 {
+  width: 85%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w90 {
+  width: 90%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 52, www/style/shared.scss */
+.w95 {
+  width: 95%;
+  display: inline-block;
+  box-sizing: border-box; }
+
+/* line 59, www/style/shared.scss */
+.w100 {
+  display: block;
+  width: 100%;
+  box-sizing: border-box; }
+
+/* line 66, www/style/shared.scss */
+::-webkit-input-placeholder {
+  color: #dadada; }
+
+/* line 67, www/style/shared.scss */
+::-moz-placeholder {
+  color: #dadada; }
+
+/* line 68, www/style/shared.scss */
+:-ms-input-placeholder {
+  color: #dadada; }
+
+/* line 69, www/style/shared.scss */
+:-moz-placeholder {
+  color: #dadada; }
+
+/* line 72, www/style/shared.scss */
+.modal {
+  width: 600px;
+  margin: 40px auto;
+  border: 1px solid #dadada;
+  font-size: 18px; }
+  /* line 78, www/style/shared.scss */
+  .modal .p,
+  .modal p {
+    margin: 14px 0 0 0; }
+  /* line 83, www/style/shared.scss */
+  .modal h2 {
+    background: #f1f1f1;
+    border-bottom: 1px solid #dadada;
+    margin: 0;
+    padding: .3em 1em; }
+  /* line 90, www/style/shared.scss */
+  .modal label {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 4px 14px;
+    background: #e5e5e5; }
+  /* line 97, www/style/shared.scss */
+  .modal .small {
+    font-size: 14px; }
+  /* line 101, www/style/shared.scss */
+  .modal .error {
+    padding: 4px 14px;
+    color: #c74848; }
+  /* line 106, www/style/shared.scss */
+  .modal select,
+  .modal input {
+    padding: 4px 0;
+    text-indent: 14px;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    background: #f7f7f7;
+    box-sizing: border-box;
+    margin: 0; }
+    /* line 117, www/style/shared.scss */
+    .modal select[disabled],
+    .modal input[disabled] {
+      color: #6D6D6D !important; }
+  /* line 122, www/style/shared.scss */
+  .modal button {
+    font: inherit;
+    padding: 4px 10px;
+    background: #f7f7f7;
+    border: none;
+    outline: none; }
+    /* line 129, www/style/shared.scss */
+    .modal button[disabled] {
+      color: #6D6D6D !important; }
+    /* line 133, www/style/shared.scss */
+    .modal button:not([disabled]) {
+      cursor: pointer; }
+      /* line 136, www/style/shared.scss */
+      .modal button:not([disabled]):hover {
+        background: #d9e3e8;
+        color: #333; }
+    /* line 142, www/style/shared.scss */
+    .modal button.primary {
+      background: #d9e3e8; }
+      /* line 145, www/style/shared.scss */
+      .modal button.primary:not([disabled]) {
+        color: #333; }
+        /* line 148, www/style/shared.scss */
+        .modal button.primary:not([disabled]):hover {
+          background: #9eb3be;
+          color: #222; }
+    /* line 155, www/style/shared.scss */
+    .modal button.small {
+      padding: 7px 0 6px 0;
+      vertical-align: top; }
+
+/* line 166, www/style/shared.scss */
+table.normal {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px; }
+  /* line 173, www/style/shared.scss */
+  table.normal tbody tr {
+    cursor: pointer; }
+    /* line 176, www/style/shared.scss */
+    table.normal tbody tr:hover {
+      background: #d9e3e8;
+      color: #333; }
+  /* line 182, www/style/shared.scss */
+  table.normal tbody td:first-child {
+    border-right: 1px solid #dadada; }
+  /* line 188, www/style/shared.scss */
+  table.normal tbody tr:last-child td:first-child {
+    border-bottom: 1px solid #dadada; }
+  /* line 196, www/style/shared.scss */
+  table.normal tbody[data-select="remove"] tr.selected {
+    background: #ffd7d7;
+    color: #8a2b2b; }
+  /* line 201, www/style/shared.scss */
+  table.normal tbody[data-select="normal"] tr.selected {
+    background: #9eb3be;
+    color: #222; }
+  /* line 207, www/style/shared.scss */
+  table.normal thead {
+    background: #f1f1f1;
+    font-weight: 500; }
+    /* line 211, www/style/shared.scss */
+    table.normal thead td {
+      padding-top: 1em;
+      border-bottom: 1px solid #dadada; }
+  /* line 217, www/style/shared.scss */
+  table.normal:not(.empty) thead td:first-child {
+    border-bottom: none; }
+  /* line 221, www/style/shared.scss */
+  table.normal tr:nth-child(even) {
+    background: #f7f7f7; }
+  /* line 225, www/style/shared.scss */
+  table.normal td:first-child {
+    padding-left: 1em;
+    padding-left: .5em;
+    padding-right: .5em;
+    background: #f1f1f1;
+    width: 0%; }
+
+/* line 237, www/style/shared.scss */
+#footer {
+  border-top: 1px solid #dadada;
+  white-space: nowrap;
+  background: #f1f1f1;
+  height: 26px;
+  line-height: 26px;
+  box-sizing: content-box;
+  padding: 0 1em;
+  text-align: right; }
+  /* line 247, www/style/shared.scss */
+  #footer > div {
+    display: inline-block; }
+  /* line 251, www/style/shared.scss */
+  #footer hr.vr {
+    display: inline-block;
+    width: 0px;
+    margin: 3px 6px;
+    height: 21px;
+    border: none;
+    border-right: 1px solid #dadada;
+    vertical-align: bottom; }
+  /* line 261, www/style/shared.scss */
+  #footer input,
+  #footer select {
+    background: inherit;
+    border: none;
+    height: 26px;
+    outline: none;
+    font: inherit;
+    padding: 0 3px; }
+    /* line 271, www/style/shared.scss */
+    #footer input:hover,
+    #footer select:hover {
+      color: #333;
+      background-color: #e5e5e5; }
+    /* line 276, www/style/shared.scss */
+    #footer input:focus,
+    #footer select:focus {
+      color: #333;
+      background: #d9e3e8; }
+  /* line 282, www/style/shared.scss */
+  #footer .entity-type-filter {
+    position: relative; }
+    /* line 285, www/style/shared.scss */
+    #footer .entity-type-filter ul {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: #f1f1f1;
+      list-style-type: none;
+      border: 1px solid #dadada;
+      margin: 0;
+      padding: 0; }
+    /* line 297, www/style/shared.scss */
+    #footer .entity-type-filter:hover ul {
+      display: block; }
+    /* line 301, www/style/shared.scss */
+    #footer .entity-type-filter li {
+      padding: 6px;
+      width: 34px;
+      text-align: center;
+      box-sizing: border-box;
+      display: inline-block;
+      cursor: pointer; }
+      /* line 309, www/style/shared.scss */
+      #footer .entity-type-filter li:hover {
+        color: #333;
+        background: #d9e3e8; }
+    /* line 315, www/style/shared.scss */
+    #footer .entity-type-filter i, #footer .entity-type-filter img {
+      font-size: 16px;
+      width: 16px;
+      height: 16px; }
+
+/* line 323, www/style/shared.scss */
+.checkbox {
+  cursor: pointer;
+  display: inline-block;
+  user-select: none; }
+  /* line 329, www/style/shared.scss */
+  .checkbox:before {
+    content: 'check_box_outline_blank';
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: bottom;
+    display: inline-block;
+    margin-right: .2em;
+    font-size: 1.4em;
+    color: #444; }
+  /* line 341, www/style/shared.scss */
+  .checkbox[checked]:before {
+    content: 'check_box'; }
+
+/* line 348, www/style/shared.scss */
+.toolbar {
+  background: #f1f1f1;
+  color: #5a5a5a;
+  font-size: 16px;
+  border-top: 1px solid #dadada; }
+  /* line 354, www/style/shared.scss */
+  .toolbar div {
+    vertical-align: top;
+    display: inline-block; }
+  /* line 359, www/style/shared.scss */
+  .toolbar .button,
+  .toolbar button {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px;
+    height: 62px;
+    background: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: inherit;
+    font: inherit; }
+    /* line 372, www/style/shared.scss */
+    .toolbar .button i, .toolbar .button img,
+    .toolbar button i,
+    .toolbar button img {
+      font-size: 36px;
+      display: inline-block;
+      pointer-events: none; }
+    /* line 378, www/style/shared.scss */
+    .toolbar .button:hover,
+    .toolbar button:hover {
+      background: #d9e3e8;
+      color: #333; }
+  /* line 384, www/style/shared.scss */
+  .toolbar input[type="number"],
+  .toolbar input[type="text"] {
+    background: inherit;
+    border: none;
+    outline: none;
+    font: inherit;
+    padding: 5px;
+    color: inherit; }
+    /* line 393, www/style/shared.scss */
+    .toolbar input[type="number"]:focus, .toolbar input[type="number"]:hover,
+    .toolbar input[type="text"]:focus,
+    .toolbar input[type="text"]:hover {
+      background-color: #e5e5e5;
+      color: #333; }
+  /* line 400, www/style/shared.scss */
+  .toolbar button.inline {
+    vertical-align: top;
+    height: 31px;
+    line-height: 21px; }
+    /* line 405, www/style/shared.scss */
+    .toolbar button.inline i, .toolbar button.inline img {
+      font-size: 22px;
+      pointer-events: none; }
+    /* line 410, www/style/shared.scss */
+    .toolbar button.inline span {
+      vertical-align: text-bottom;
+      pointer-events: none; }
+  /* line 416, www/style/shared.scss */
+  .toolbar hr.vr {
+    display: inline-block;
+    width: 0px;
+    margin: 12px 6px;
+    height: 39px;
+    border: none;
+    border-right: 1px solid #dadada;
+    vertical-align: bottom; }
+
+@keyframes flash {
+  from {
+    background: #d9e3e8; }
+  to {
+    background: #f7f7f7; } }
+
+/* line 435, www/style/shared.scss */
+.flash {
+  animation-name: flash;
+  animation-duration: 1s; }
+
+/* line 440, www/style/shared.scss */
+.notifications-opener {
+  padding: 0 4px;
+  cursor: pointer;
+  float: left; }
+  /* line 445, www/style/shared.scss */
+  .notifications-opener:hover {
+    background: #d9e3e8;
+    color: #333; }
+
+/* line 451, www/style/shared.scss */
+.notifications-list {
+  padding: 0;
+  position: absolute;
+  left: 260px;
+  bottom: 26px;
+  margin: 0;
+  padding: 12px 4px 16px 12px;
+  overflow: auto; }
+  /* line 461, www/style/shared.scss */
+  .notifications-list:not(.attached) {
+    pointer-events: none;
+    opacity: 0;
+    direction: rtl;
+    max-height: 90%; }
+    /* line 467, www/style/shared.scss */
+    .notifications-list:not(.attached).visible, .notifications-list:not(.attached):hover {
+      opacity: .8;
+      transition: .2s;
+      pointer-events: all; }
+  /* line 474, www/style/shared.scss */
+  .notifications-list ul {
+    padding: 0;
+    direction: ltr;
+    width: 260px;
+    background: #f1f1f1;
+    border: 1px solid #a3a3a3;
+    border-radius: 6px;
+    box-shadow: 2px 4px 4px #dadada;
+    margin: 0;
+    list-style-type: none; }
+    /* line 486, www/style/shared.scss */
+    .notifications-list ul:empty:before {
+      content: "Notifications will appear here.";
+      margin: 24px;
+      font-style: italic;
+      display: block; }
+  /* line 494, www/style/shared.scss */
+  .notifications-list img, .notifications-list i {
+    width: 24px;
+    float: left;
+    margin-right: 4px; }
+  /* line 500, www/style/shared.scss */
+  .notifications-list li {
+    padding: 8px 8px;
+    display: block; }
+    /* line 504, www/style/shared.scss */
+    .notifications-list li:not(:first-child) {
+      border-top: 1px solid #dadada; }
+  /* line 509, www/style/shared.scss */
+  .notifications-list h3 {
+    margin: 0;
+    line-height: 24px; }
+  /* line 514, www/style/shared.scss */
+  .notifications-list p {
+    margin: 0; }
+  /* line 519, www/style/shared.scss */
+  .notifications-list.attached {
+    left: auto;
+    bottom: 27px;
+    padding: 0;
+    margin: 0;
+    right: 0;
+    top: 0; }
+    /* line 527, www/style/shared.scss */
+    .notifications-list.attached ul {
+      box-shadow: none;
+      border: none;
+      border-left: 1px solid #dadada;
+      border-radius: 0;
+      min-height: 100%; }
+      /* line 534, www/style/shared.scss */
+      .notifications-list.attached ul:empty:before {
+        padding: 24px;
+        margin: 0; }
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url(../fonts/MaterialIcons-Regular.woff2) format("woff2"), url(../fonts/MaterialIcons-Regular.woff) format("woff"), url(../fonts/MaterialIcons-Regular.ttf) format("truetype"); }
+
+/* line 557, www/style/shared.scss */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.2em;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  vertical-align: text-bottom;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga'; }
+
+/*# sourceMappingURL=shared.css.map */
