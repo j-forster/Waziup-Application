@@ -13,7 +13,21 @@ viewLoader.define("text", class TextControl extends Control {
   
     if(! EDITOR) {
 
-      this.pipeline.listen(data => {
+      if(this.text_to_html) {
+        
+        this.app.templateAsync(this.text_to_html, null, html => this.$container.html(html));
+      } else {
+        
+        this.pipeline.listen((data) => {
+        
+          if(typeof data == "string")
+            this.$container.text(data);
+          else
+            this.$container.text(JSON.stringify(data));
+        });
+      }
+      
+      /*this.pipeline.listen(data => {
 
         if(this.text) {
           this.$container.html(this.app.template(this.text_to_html, data));
@@ -38,7 +52,7 @@ viewLoader.define("text", class TextControl extends Control {
             }
           }
         }
-      });
+      });*/
     }
   }
 

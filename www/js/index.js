@@ -210,7 +210,15 @@ const EDITOR = location.hash == "#editor";
   }
 }*/
 
-var broker = new Broker(Waziup, "");
+var broker = new Broker();
+
+broker.login("cdupont", "password").then(() => {
+  
+  console.log("login OK");
+}, err => {
+  
+  console.error("login FAILED", err);
+});
 
 if(EDITOR) {
   

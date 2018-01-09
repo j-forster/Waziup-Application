@@ -1,13 +1,7 @@
 const TABLE_TEMPLATE = `
 <div class='view-table control'>
   <span>No data to display...</span>
-  <table>
-    <thead>
-      <tr></tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+  <ul></ul>
 </div>
 `;
 
@@ -20,11 +14,10 @@ viewLoader.define("table", class TableControl extends Control {
     args.hidden = false;
     super(args, TABLE_TEMPLATE);
   
-    this.$table = this.$container.find("table");
-    this.$thead = this.$container.find("thead tr");
-    this.$tbody = this.$container.find("tbody");
+    this.$list = this.$container.find("ul");
     this.$message = this.$container.find("span");
     
+    this.ctrl = args.control || "";
     
     if(!EDITOR) {
       
@@ -36,11 +29,11 @@ viewLoader.define("table", class TableControl extends Control {
       
       this.pipeline.listen((data) => {
         
-        this.createTable(data);
+        this.createList(data);
         //console.log("table", data)
       });
       
-      this.$tbody.on("click", "tr", (evt) => this.onHover(evt));
+      this.$list.on("click", "li", (evt) => this.onHover(evt));
     } else {
       
       this.active_elm_pipeline = args.active_elm_pipeline || "";
@@ -57,42 +50,41 @@ viewLoader.define("table", class TableControl extends Control {
     
   }
 
-  createTable(data) {
+  createList(data) {
     
     this.data = data;
     
     if(! Array.isArray(data)) {
       
       this.$message.text("Data is not displayable!").show();
-      this.$table.hide();
+      this.$list.hide();
       return;
     }
     
     if(data.length === 0) {
       
       this.$message.text("This list contains no items.").show();
-      this.$table.hide();
+      this.$list.hide();
       return;
     }
+    
+    this.$list.empty().append(data.map((entity, i) => {
+      
+      var $li = $("<li>");
+      var args = {
+        container: $li,
+        position: {
+          x: "", 
+          y: ""
+        },
+        pipeline: this.pipeline.scope.join(".")+"."+i
+      };
 
-    var keys = new Set(Object.keys(data[0]));
-    for(var i=1; i<data.length; ++i) {
-      
-      for(var key of keys)
-        if(! (key in data[i]))
-          keys.delete(key);
-    }
+      this.app.create(this.ctrl, args);
+      return $li;
+    }));
     
-    if(keys.size === 0) {
-      
-      this.$message.text("The items could not be displayed.").show();
-      this.$table.hide();
-      return;
-    }
-    
-    this.$thead.empty().append(Array.from(keys).map(key => $("<th>").text(key)));
-    this.$tbody.empty().append(data.map(entity => $("<tr>").append(... Array.from(keys).map(key => $("<td>").text(entity[key])))));
-    this.$table.show();
+    this.$list.show();
     this.$message.hide();
   }
   
@@ -101,9 +93,31 @@ viewLoader.define("table", class TableControl extends Control {
     this.active_elm_pipeline = pipeline;
   }
 
+  setControl(ctrl) {
+    
+    this.ctrl = ctrl;
+  }
+
+  setMeta(meta, value) {
+    
+    this.$list = this.$list || this.$container.find("ul");
+    
+    if(meta == "css") {
+      
+      this.$list.attr("style",value);
+      
+    } else if(meta == "class") {
+      
+      this.$list.attr("class", value);
+    } 
+    
+    super.setMeta(meta, value);
+  }
+
   serialize() {
     var ser = super.serialize();
     ser.active_elm_pipeline = this.active_elm_pipeline;
+    ser.control = this.ctrl;
     return ser;
   }
   

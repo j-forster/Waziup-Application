@@ -16,33 +16,6 @@
       navigator.platform.startsWith("Win") ? "windows" : (
         navigator.platform.startsWith("mac") ? "mac" : "linux")
     ));
-    
-    var Waziup = {
-      name: "Waziup.io",
-      servicePath: "TEST",
-      fiwareOrion: "http://broker.waziup.io",
-      fiwareOrionV1: "http://broker.waziup.io/v1",
-      fiwareOrionV2: "http://broker.waziup.io/v2",
-      cygnus: "http://historicaldata.waziup.io/STH",
-      keycloak: {
-        url: "http://aam.waziup.io/auth",
-        realm: "waziup",
-        clientId: "waziup"
-      },
-      keycloakAdmin: {
-        url: "http://aam.waziup.io/auth",
-        clientId: "admin-cli",
-        username: "admin",
-        password: "KCadminW"
-      }
-    }
-    
-    // Issue148
-    Waziup.name = "Waziup.io CORS";
-    Waziup.fiwareOrion = null;
-    Waziup.fiwareOrionV1 = null;
-    Waziup.fiwareOrionV2 = "http://orion.waziup.io/v1/data";
-    
   </script>
 
   <script src="js/simplemde.min.js"></script>
@@ -57,7 +30,15 @@
   <textarea id="mde" style="display:none" placeholder="Enter the textbox content here.."></textarea>
   
   
-  <textarea id="script_initial" style="display:none" data-ctrl-type="script-initial" placeholder="{&#10;  key: 'value'&#10;}"></textarea>
+  <div data-ctrl-type="script-initial" class="menubar" style="display:none">
+    <textarea id="script_initial" placeholder="{&#10;  key: 'value'&#10;}"></textarea>
+    <div>
+      <input type="checkbox" id="script_initial_preview" name="script_initial_preview" checked>
+      <label for="script_initial_preview">Check syntax and auto-evaluate</label>
+    </div>
+  </div>
+  
+  
   
     
   <div data-ctrl-type="script-navigate" class="menubar" style="display:none">
@@ -82,17 +63,16 @@
         <td><input type="text" value="app?location_ctrl"></td>
         <td><button><i class="material-icons">remove</i></button></td>
       </tr>
-      <tr>
-        <td><input type="text" value="location"></td>
-        <td><input type="text" value="Location"></td>
-        <td><input type="text" value="app?location_ctrl"></td>
-        <td><button><i class="material-icons">remove</i></button></td>
-      </tr>
      </tbody>
     </table>
   </div>
   
   <div data-ctrl-type="table list" class="menubar" style="display:none">
+    <span data-ctrl-type="table" style="display:none">
+      <label for="table_ctrl">Control / View: </label>
+      <input type="text" name="table_ctrl" id="table_ctrl" placeholder="sub_page">
+    </span>
+    
     <label for="table_active_elm">Active Element Pipeline: </label>
     <input type="text" name="table_active_elm" id="table_active_elm" placeholder="pipeline.attr:event">
   </div>
@@ -188,6 +168,7 @@
         
           <div class="toolbar" style="">
             <button data-action="create" data-control="map"><i class="material-icons">map</i><br>Map</button>
+            <button data-action="create" data-control="linechart"><i class="material-icons">show_chart</i><br>Line Chart</button>
             <button data-action="create" data-control="table"><i class="material-icons">list</i><br>Table</button>
             <button data-action="create" data-control="list"><i class="material-icons">view_list</i><br>List</button>
             <button data-action="create" data-control="app"><i class="material-icons">apps</i><br>Sub App</button>

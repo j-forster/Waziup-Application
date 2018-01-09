@@ -193,6 +193,7 @@ class AppControl extends Control {
       
       this.on("init", () => {
 
+        this.pipeline.data.error = null;
         this.pipeline.location = window.location;
         this.pipeline.emit("pump", ["location"], this);
         this.pipeline.data.window = window;
@@ -242,59 +243,62 @@ class AppControl extends Control {
   navigate(page) {
     
     this.page = page;
-    
-    broker.get("v2/entities/"+page+"?type=Application").then(entity => {
-    
-      this.exists = true;
-      var controls = entity.controls.value.map(val => JSON.parse(decodeURIComponent(val)));
-      
-      var remaining = controls.length;
-      console.groupCollapsed("["+page+"] Controls");
-      
-      controls.forEach(ctrl => this.create(ctrl.type, ctrl, () => {
-        
-        if(--remaining == 0) {
-          
-          console.groupEnd("["+page+"] Controls");
-          this.emit("init");
-          $("#loading").hide();
-        }
-      }));
-      
-      //
-      
-      var metadata = JSON.parse(decodeURIComponent(entity.metadata.value));
-      this.metadata = metadata;
-      Object.keys(metadata).forEach(key => this.setMeta(key, metadata[key]));
-      
-    }, err => {
 
-      if(EDITOR) {
-        
-        alert("There was no application found.\nA new one will be created once you click 'Save App'.");
-        $("#loading").hide();
-        
-        this.setMeta("width", 600);
-        this.setMeta("height", 800);
-        this.setMeta("title", "My new App");
-        
-        this.create("text", {
-          type: "text",
-          text: "# My new App\nAdd your content here..",
-          html: '<h1 id="mynewapp">My new App</h1><p>Add your content here..</p>',
-          position: {
-            x: 48, y: 32,
-            width: 288, height: 128
+    broker.getEntity("Application", page)
+      .then(entity => {
+    
+        this.exists = true;
+        var controls = entity.controls.map(val => JSON.parse(decodeURIComponent(val)));
+
+        var remaining = controls.length;
+        console.groupCollapsed("["+page+"] Controls");
+
+        controls.forEach(ctrl => this.create(ctrl.type, ctrl, () => {
+
+          if(--remaining == 0) {
+
+            console.groupEnd("["+page+"] Controls");
+            this.emit("init");
+            $("#loading").hide();
           }
-        })
-        
-        this.emit("init");
-      }
-      else {
-        
-        $("#loading").text("Nothing in here..").show();
-      }
-    });
+        }));
+
+        //
+
+        var metadata = JSON.parse(decodeURIComponent(entity.metadata));
+        this.metadata = metadata;
+        Object.keys(metadata).forEach(key => this.setMeta(key, metadata[key]));
+
+      }, err => {
+      
+        console.warn("App '"+page+"' not found.", err);
+
+        if(EDITOR) {
+
+          alert("There was no application found.\nA new one will be created once you click 'Save App'.");
+          $("#loading").hide();
+
+          this.setMeta("width", 600);
+          this.setMeta("height", 800);
+          this.setMeta("title", "My new App");
+
+          this.create("text", {
+            type: "text",
+            text: "# My new App\nAdd your content here..",
+            html: '<h1 id="mynewapp">My new App</h1><p>Add your content here..</p>',
+            position: {
+              x: 48, y: 32,
+              width: 288, height: 128
+            }
+          })
+
+          this.emit("init");
+        }
+        else {
+
+          $("#loading").text("Nothing in here..").show();
+        }
+      });
   }
   
   setMeta(meta, value) {
@@ -345,6 +349,50 @@ class AppControl extends Control {
 
         return decode(!text.trim() ? data : (new Pipeline.Connector(this, text)).data);
       });
+    }
+    
+    return str;
+  }
+  
+  templateAsync(str, data, cb, decode = function bestDecoding(d) {
+      
+      if(typeof d == "string")
+        return d;
+      try {
+        return JSON.stringify(d, null, 2);
+      } catch(err) {}
+      return d+"";
+    }) {
+    
+    if(str.match(/\{\{\s*([\w\d\.:]+)\s*\}\}/)) {
+      
+      var parts = str.split(/\{\{\s*([\w\d\.:]+)\s*\}\}/),
+          rawParts = parts.slice(0);
+      
+      for(let i = 1; i<parts.length; i+= 2) {
+        
+        if(parts[i].trim()) {
+          
+          rawParts[i] = null;
+          
+          (new Pipeline.Connector(this, parts[i])).listen(data => {
+          
+            rawParts[i] = data;
+            parts[i] = decode(data);
+            var complete = rawParts.findIndex(d => d === null || d === undefined) === -1;
+            cb(parts.join(""), complete);
+          });
+          
+        } else {
+          
+          parts[i] = decode(data);
+        }
+      }
+      
+      cb(parts.join(""), false);
+    } else {
+      
+      cb(str, true);
     }
     
     return str;

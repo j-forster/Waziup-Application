@@ -19,38 +19,7 @@ viewLoader.define("button", class ButtonControl extends Control {
         this.pipeline.emit("click");
       });
       
-      this.pipeline.listen(data => {
-
-        if(data) this.$container.show();
-        else {
-          this.$container.hide();
-          return;
-        }
-        
-        if(this.text) {
-          this.$container.html(this.app.template(this.text_to_html, data));
-        } else {
-          
-          if(data === null || data === undefined) {
-          
-            this.$container.text("");
-            return;
-          }
-
-          if(typeof data == "string")
-            this.$container.text(data);
-          else {
-
-            try {
-
-              this.$container.text(JSON.stringify(data, null, 2));
-            } catch(err) {
-
-              this.$container.text(err);
-            }
-          }
-        }
-      });
+      this.app.templateAsync(this.text_to_html, null, (html) => this.$container.html(html));
     }
   }
   

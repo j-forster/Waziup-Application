@@ -63,6 +63,7 @@ p + p {
 .view-list,
 .view-table,
 .map,
+.linechart,
 .button,
 .number,
 .input-string,
@@ -71,41 +72,41 @@ p + p {
   min-height: 1em;
   display: inline-block;
   position: absolute;
-  box-sizing: content-box;
+  box-sizing: border-box;
   white-space: pre; }
 
-/* line 83, www/style/index.scss */
+/* line 84, www/style/index.scss */
 .view-list,
 .view-table {
   overflow: auto;
   white-space: inherit; }
-  /* line 88, www/style/index.scss */
+  /* line 89, www/style/index.scss */
   .view-list > table,
   .view-table > table {
     width: inherit; }
-  /* line 92, www/style/index.scss */
+  /* line 93, www/style/index.scss */
   .view-list > table > tbody > tr > td > .control,
   .view-table > table > tbody > tr > td > .control {
     position: relative; }
 
-/* line 97, www/style/index.scss */
+/* line 98, www/style/index.scss */
 .ppl_observ {
   position: absolute;
-  box-sizing: content-box;
+  box-sizing: border-box;
   font-family: monospace;
   border: 1px solid #dadada; }
 
-/* line 104, www/style/index.scss */
+/* line 105, www/style/index.scss */
 .app {
   position: relative;
   background: #f1f1f1;
   text-align: left; }
 
-/* line 110, www/style/index.scss */
+/* line 111, www/style/index.scss */
 #app {
   display: inline-block; }
 
-/* line 114, www/style/index.scss */
+/* line 115, www/style/index.scss */
 .script-navigate,
 .script-bridge,
 .ppl_fetch,
@@ -114,7 +115,7 @@ p + p {
   display: inline-block;
   position: absolute;
   text-align: center; }
-  /* line 123, www/style/index.scss */
+  /* line 124, www/style/index.scss */
   .script-navigate span,
   .script-bridge span,
   .ppl_fetch span,
@@ -125,7 +126,7 @@ p + p {
     overflow: hidden;
     display: inline-block;
     text-overflow: ellipsis; }
-  /* line 131, www/style/index.scss */
+  /* line 132, www/style/index.scss */
   .script-navigate img,
   .script-bridge img,
   .ppl_fetch img,

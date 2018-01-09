@@ -172,29 +172,21 @@ var editor = new class Editor extends Events {
   
   /////////////////////////////////////////////////////////
   
-  serialize() {
+  asEntity() {
     
     return {
       type: "Application",
       id: app.page,
-      controls: {
-        type: "string",
-        metadata: {},
-        value: Object.values(app.ctrls).map(ctrl =>
-          encodeURIComponent(JSON.stringify(ctrl.serialize()))
-          .replace(/\(/g, "%28")
-          .replace(/\)/g, "%29")
-          .replace(/\'/g, "%27")
-        )
-      },
-      metadata: {
-        type: "string",
-        metadata: {},
-        value: encodeURIComponent(JSON.stringify(app.metadata))
-          .replace(/\(/g, "%28")
-          .replace(/\)/g, "%29")
-          .replace(/\'/g, "%27")
-      }
+      controls: [Object.values(app.ctrls).map(ctrl =>
+        encodeURIComponent(JSON.stringify(ctrl.serialize()))
+        .replace(/\(/g, "%28")
+        .replace(/\)/g, "%29")
+        .replace(/\'/g, "%27")
+      )],
+      metadata: [encodeURIComponent(JSON.stringify(app.metadata))
+        .replace(/\(/g, "%28")
+        .replace(/\)/g, "%29")
+        .replace(/\'/g, "%27")]
     }
   }
 }

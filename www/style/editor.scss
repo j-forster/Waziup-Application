@@ -110,6 +110,11 @@ iframe {
   outline: none;
   padding: .6em;
   resize: vertical;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #dadada; 
 }
 
 [data-ctrl-type='list'] {

@@ -4,7 +4,7 @@ viewLoader.define("script-initial", class ScriptInitialControl extends Control {
   
     args.resizeable = false;
     args.hidden = true;
-    super(args, "<div class='script-navigate control'><img src='img/script_initial.svg'><br><span></span></div>");
+    super(args, "<div class='script-navigate control'><img src='img/script_initial.svg'><br><span>Script Initial</span></div>");
     
     
     this.setObject(args.object || {});
@@ -23,7 +23,7 @@ viewLoader.define("script-initial", class ScriptInitialControl extends Control {
           this.pipeline.error(err);
         }
         
-        if(data) {
+        if(data && !this.pipeline.data) {
           
           this.pipeline.pump(data);
           this.pipeline.emit("init");

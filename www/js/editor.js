@@ -103,6 +103,10 @@ var editor = new class Editor {
       $("#table_active_elm").val(ctrl.active_elm_pipeline);
     }
     
+    if(ctrl.type=="table") {
+      $("#table_ctrl").val(ctrl.ctrl);
+    }
+    
     if(ctrl.type=="app") {
       $("#app_page").val(ctrl.page);
     }
@@ -199,17 +203,29 @@ var editor = new class Editor {
     this.selectedCtrl.setActiveElmPipeline(pipeline);
   }
   
+  onTableControlChange() {
+    
+    var ctrl = $("#table_ctrl").val();
+    this.selectedCtrl.setControl(ctrl);
+  }
+  
   onScriptInitialChange() {
     
     var obj = $("#script_initial").val();
     
-    try {
-      eval(obj);
-      this.selectedCtrl.setObject(obj);
-      $("#script_initial").css("color", "");
-    } catch(err) {
+    if($("#script_initial_preview")[0].checked) {
+            
+      try {
+        eval(obj);
+        this.selectedCtrl.setObject(obj);
+        $("#script_initial").css("color", "");
+      } catch(err) {
+
+        $("#script_initial").css("color", "red");
+      }
+    } else {
       
-      $("#script_initial").css("color", "red");
+      $("#script_initial").css("color", "");
     }
   }
   
@@ -328,11 +344,13 @@ var editor = new class Editor {
   
   saveApp() {
     
-    var entity = this.embeddedEditor.serialize();
+    var id = this.app.page;
+    var entity = this.embeddedEditor.asEntity();
     
     if(this.app.exists) {
       
-      this.app.broker.put("v2/entities/"+this.app.page+"/attrs/controls?type=Application", entity.controls).then(() => {
+      this.app.broker.putEntityAttr("Application", id, "controls", entity.controls)
+      .then(() => {
       
         console.log("ok controls");
       }, error => {
@@ -340,7 +358,8 @@ var editor = new class Editor {
         console.log(error);
       });
       
-      this.app.broker.put("v2/entities/"+this.app.page+"/attrs/metadata?type=Application", entity.metadata).then(() => {
+      this.app.broker.putEntityAttr("Application", id, "metadata", entity.metadata)
+      .then(() => {
       
         console.log("ok metadata");
       }, error => {
@@ -350,13 +369,15 @@ var editor = new class Editor {
       
     } else {
       
-      this.iframe.app.broker.post("v2/entities", entity).then(() => {
+      this.app.broker.createEntity(entity)
+      .then(() => {
       
         console.log("ok");
         this.app.exists = true;
       }, error => {
 
-        console.log(error);
+        console.error(error);
+        alert("Speichern fehlgeschlagen.\n"+error);
       })
     }
   }
@@ -374,6 +395,7 @@ $("[data-app-meta]").on("change", editor.onAppMetaChange.bind(editor));
 $("[data-control-meta]").on("change", editor.onControlMetaChange.bind(editor));
 $("#navigate_url").on("change", editor.onNavigateURLChange.bind(editor));
 $("#table_active_elm").on("change", editor.onTableActiveElmChange.bind(editor));
+$("#table_ctrl").on("change", editor.onTableControlChange.bind(editor));
 $("#app_page").on("change", editor.onAppPageChange.bind(editor));
 $("#script_initial").on("keyup", editor.onScriptInitialChange.bind(editor));
 $("[data-ctrl-type='list'] tbody").on("change", "input", editor.onListRowsChange.bind(editor))

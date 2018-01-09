@@ -1,16 +1,16 @@
-/* line 1, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 1, www/style/editor.scss */
 body {
   display: flex;
   flex-direction: column; }
 
-/* line 6, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 6, www/style/editor.scss */
 iframe {
   flex-grow: 1; }
 
-/* line 14, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 14, www/style/editor.scss */
 .sub-toolbar {
   position: relative; }
-  /* line 17, N:/GitHub/Waziup-Application/www/style/editor.scss */
+  /* line 17, www/style/editor.scss */
   .sub-toolbar:hover:after {
     content: '';
     position: absolute;
@@ -18,7 +18,7 @@ iframe {
     left: -60%;
     right: -60%;
     height: 30px; }
-  /* line 26, N:/GitHub/Waziup-Application/www/style/editor.scss */
+  /* line 26, www/style/editor.scss */
   .sub-toolbar > .toolbar {
     opacity: 0;
     pointer-events: none;
@@ -28,13 +28,13 @@ iframe {
     right: 0px;
     margin-bottom: -6px;
     transition: .2s; }
-  /* line 37, N:/GitHub/Waziup-Application/www/style/editor.scss */
+  /* line 37, www/style/editor.scss */
   .sub-toolbar:hover > .toolbar {
     opacity: 1;
     pointer-events: auto;
     margin-bottom: 0; }
 
-/* line 44, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 44, www/style/editor.scss */
 #mde {
   min-height: 100px;
   text-align: left;
@@ -48,25 +48,25 @@ iframe {
   border: none;
   border-top: 1px solid #dadada; }
 
-/* line 58, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 58, www/style/editor.scss */
 #menu-pipeline {
   text-align: left;
   margin: 9px 2px 2px; }
-  /* line 62, N:/GitHub/Waziup-Application/www/style/editor.scss */
+  /* line 62, www/style/editor.scss */
   #menu-pipeline span {
     margin-left: 5px; }
-  /* line 66, N:/GitHub/Waziup-Application/www/style/editor.scss */
+  /* line 66, www/style/editor.scss */
   #menu-pipeline ::-webkit-input-placeholder {
     color: #888;
     font-style: italic; }
 
-/* line 72, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 72, www/style/editor.scss */
 .menubar {
   background: #f1f1f1;
   color: #5a5a5a;
   font-size: 16px;
   border-top: 1px solid #dadada; }
-  /* line 78, N:/GitHub/Waziup-Application/www/style/editor.scss */
+  /* line 78, www/style/editor.scss */
   .menubar hr.vr {
     display: inline-block;
     width: 0px;
@@ -75,7 +75,7 @@ iframe {
     border: none;
     border-right: 1px solid #dadada;
     vertical-align: bottom; }
-  /* line 88, N:/GitHub/Waziup-Application/www/style/editor.scss */
+  /* line 88, www/style/editor.scss */
   .menubar select,
   .menubar input {
     background: inherit;
@@ -84,13 +84,13 @@ iframe {
     padding: 2px 4px;
     border: none;
     outline: none; }
-    /* line 97, N:/GitHub/Waziup-Application/www/style/editor.scss */
+    /* line 97, www/style/editor.scss */
     .menubar select:hover, .menubar select:focus,
     .menubar input:hover,
     .menubar input:focus {
       background: #d9e3e8; }
 
-/* line 104, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 104, www/style/editor.scss */
 #script_bridge,
 #script_initial {
   background: #f1f1f1;
@@ -99,24 +99,29 @@ iframe {
   border-top: 1px solid #dadada;
   outline: none;
   padding: .6em;
-  resize: vertical; }
+  resize: vertical;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #dadada; }
 
-/* line 117, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 122, www/style/editor.scss */
 [data-ctrl-type='list'] table {
   display: inline-table;
   text-align: left; }
 
-/* line 124, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 129, www/style/editor.scss */
 label[for='app_width'],
 label[for='app_height'] {
   width: 60px; }
 
-/* line 130, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 135, www/style/editor.scss */
 #navigate_url,
 #fetch_url {
   width: 400px; }
 
-/* line 135, N:/GitHub/Waziup-Application/www/style/editor.scss */
+/* line 140, www/style/editor.scss */
 #app_width,
 #app_height {
   width: 60px; }

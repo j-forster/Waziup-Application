@@ -87,6 +87,12 @@ Pipeline.Connector = class Connector {
       cb(this.data, "pump", this.control);
   }
   
+  fail(err) {
+    
+    this.pipeline.data.error = err;
+    this.emit("error");
+  }
+  
   emit(event) {
     
     if(this.mutex.has(event))

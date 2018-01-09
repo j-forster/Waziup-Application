@@ -11,26 +11,38 @@ viewLoader.define("pipeline-fetch", class PipelineFetchControl extends Control {
     
     if(!EDITOR) {
       
-      if(this.fetch.method === "GET" && this.pipeline.events.length === 1 && this.pipeline.events[0] === "pump")
-        app.on("load", (data) => this.doFetch(null, data));
-      else
-        this.pipeline.listen((data) => this.doFetch(data, data));
+      //if(this.fetch.method === "GET" && this.pipeline.events.length === 1 && this.pipeline.events[0] === "pump")
+      //  app.on("load", (data) => this.doFetch(null, data));
+      //else
+      
+      
+      this.app.templateAsync(this.fetch.url, null, (url, completed) => {
+        
+        if(completed) this.doFetch(url)
+      });
+      
+      // this.pipeline.listen((data) => this.doFetch(data, data));
     }
   }
 
-  doFetch(body, templData) {
+  doFetch(url) {
     
-    var url = app.template(this.fetch.url, templData);
+    if(this.blocked)
+      return;
+    this.blocked = true;
     
-    if(this.fetch.body)
-      body = (new Pipeline.Connector(this, this.fetch.body)).data
+    var body = this.fetch.body
+      ? (new Pipeline.Connector(this, this.fetch.body)).data
+      : null;
     
     var init = {
       headers: new Headers({
         "Accept": "application/json,text/plain"
       }),
       method: this.fetch.method,
-      body: (this.fetch.method !== "GET") && body !== null ? JSON.stringify(body) : null
+      body: (this.fetch.method !== "GET") && body !== null
+        ? (typeof body == "object" ? JSON.stringify(body) : body)
+        : null
     };
     
     if(this.token)
@@ -60,8 +72,10 @@ viewLoader.define("pipeline-fetch", class PipelineFetchControl extends Control {
               var obj = JSON.parse(text);
             } catch(err) {
 
-              return;
+              console.warn(err);
+              obj = text;
             }
+            
             if(this.fetch.method == "GET")
               this.pipeline.pump(obj);
             
@@ -77,13 +91,19 @@ viewLoader.define("pipeline-fetch", class PipelineFetchControl extends Control {
           else
             this.pipeline.emit("fetch");
         }
+        
+        this.blocked = false;
 
       }, () => {
         
         this.pipeline.fail(error);
+        this.blocked = false;
       });
       
-    }, (err) => this.pipeline.fail("Network error: "+err.message+"."));
+    }, (err) => {
+      this.pipeline.fail("Network error: "+err.message+".");
+      this.blocked = false;
+    });
   }
 
   setFetch(method, url, body) {
