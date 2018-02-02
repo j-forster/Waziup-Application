@@ -12,7 +12,7 @@ Now grab a second Number control and place it next to the one that you already c
 Click **Save App** and **Show App**. You can change the values independently, but that's not surprising.
 
 We will now to connect the input fields. You can to that by connecting them to a pipeline - the same pipeline for both inputs will make them synchronise.
-Think about it as a value transfer: everytime you change a value, it will be pumped through the pipeline and affect all controls that are conencted to it.
+Think about it as a value transfer: every time you change a value, it will be pumped through the pipeline and affect all controls that are conencted to it.
 
 ![Pipeline Editor](img/pipeline_editor.png)
 
