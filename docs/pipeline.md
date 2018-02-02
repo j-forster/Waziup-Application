@@ -29,7 +29,7 @@ Change the text to: `#Value: {{test}}`. It will now listen to the *test* pipelin
 
 ![Pipeline Text](img/pipeline_text.png)
 
-You next step will be to create some more inputs and text elements to fill your application. The next chapter will show you some more pipeline features.
+Your next step will be to create some more inputs and text elements to fill your application. The next chapter will show you some more pipeline features.
 
 ---------------------------------
 
