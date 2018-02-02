@@ -20,7 +20,7 @@ Response:
     "owner":"cdupont",
     "location": {
         "latitude":5.36,
-        longitude":4.0083
+        "longitude":4.0083
     },
     "dateCreated":"2018-02-02T11:42:08.00Z",
     "dateModified":"2018-02-02T11:42:08.00Z",
